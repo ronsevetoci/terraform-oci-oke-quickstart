@@ -41,7 +41,7 @@ variable "existent_oke_cluster_id" {
   description = "Using existent OKE Cluster. Only the application and services will be provisioned. If select cluster autoscaler feature, you need to get the node pool id and enter when required"
 }
 variable "cluster_type" {
-  default     = "BASIC_CLUSTER"
+  default     = "ENHANCED_CLUSTER"
   description = "The type of OKE cluster to create. Valid values are: BASIC_CLUSTER or ENHANCED_CLUSTER"
 }
 variable "create_orm_private_endpoint" {
@@ -118,8 +118,10 @@ variable "show_advanced" {
 locals {
   app_name            = var.cluster_tags.freeformTags.AppName
   deploy_id           = var.cluster_tags.freeformTags.DeploymentID
-  app_name_normalized = substr(replace(lower(var.cluster_tags.freeformTags.AppName), " ", "-"), 0, 6)
-  app_name_for_dns    = substr(lower(replace(var.cluster_tags.freeformTags.AppName, "/\\W|_|\\s/", "")), 0, 6)
+  #app_name_normalized = substr(replace(lower(var.cluster_tags.freeformTags.AppName), " ", "-"), 0, 6)
+  #app_name_for_dns    = substr(lower(replace(var.cluster_tags.freeformTags.AppName, "/\\W|_|\\s/", "")), 0, 6)
+  app_name_for_dns = var.cluster_tags.freeformTags.AppName
+  app_name_normalized = var.cluster_tags.freeformTags.AppName
 }
 
 # OKE Compartment

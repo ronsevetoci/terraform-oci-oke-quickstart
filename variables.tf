@@ -178,7 +178,7 @@ variable "existent_oke_cluster_id" {
   description = "Using existent OKE Cluster. Only the application and services will be provisioned. If select cluster autoscaler feature, you need to get the node pool id and enter when required"
 }
 variable "cluster_type" {
-  default     = "BASIC_CLUSTER"
+  default     = "ENHANCED_CLUSTER"
   description = "The type of OKE cluster to create. Valid values are: BASIC_CLUSTER or ENHANCED_CLUSTER"
 
   validation {
@@ -275,8 +275,8 @@ variable "node_pool_instance_shape_1" {
   type = map(any)
   default = {
     "instanceShape" = "VM.Standard.E4.Flex"
-    "ocpus"         = 2
-    "memory"        = 16
+    "ocpus"         = 1
+    "memory"        = 8
   }
   description = "A shape is a template that determines the number of OCPUs, amount of memory, and other resources allocated to a newly created instance for the Worker Node. Select at least 2 OCPUs and 16GB of memory if using Flex shapes"
 }

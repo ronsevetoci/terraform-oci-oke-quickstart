@@ -11,10 +11,11 @@ provider "oci" {
   alias        = "home_region"
   tenancy_ocid = var.tenancy_ocid
   region       = lookup(data.oci_identity_regions.home_region.regions[0], "name")
-
-  user_ocid        = var.user_ocid
-  fingerprint      = var.fingerprint
-  private_key_path = var.private_key_path
+  auth                = "SecurityToken"
+  config_file_profile = "DEFAULT"
+  #user_ocid        = var.user_ocid
+  #fingerprint      = var.fingerprint
+  #private_key_path = var.private_key_path
 }
 
 # New configuration to avoid Terraform Kubernetes provider interpolation. https://registry.terraform.io/providers/hashicorp/kubernetes/2.2.0/docs#stacking-with-managed-kubernetes-cluster-resources
